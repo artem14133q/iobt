@@ -1,0 +1,6 @@
+*.py
+/venv
+/*build*
+.DS_Store
+.idea
+.vscode
