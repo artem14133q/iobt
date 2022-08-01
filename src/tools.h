@@ -15,7 +15,7 @@ void checkAddress(const char * address, char * error);
 void createDevicesArray(NSArray * devices, IOBT_DEVICES * iOBTDevices);
 void fillDevice(IOBluetoothDevice * device, IOBT_DEVICE * iOBTDevice);
 
-IOBluetoothDevice * findDevice(const char * address);
+IOBluetoothDevice * findDevice(const char * address, bool strict);
 
 int IOBluetoothPreferencesAvailable();
 

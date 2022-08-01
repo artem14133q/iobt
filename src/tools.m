@@ -121,11 +121,11 @@ NSString * toNSString(const char * string) {
 }
 
 /**
- * Find device by address.
+ * Find device by address. If flag strict is true it create error when device not paired and not favorite.
  * @param address
  * @return
  */
-IOBluetoothDevice * findDevice(const char * address) {
+IOBluetoothDevice * findDevice(const char * address, bool strict) {
     char errorBuf[100];
 
     errorBuf[0] = '\0';
@@ -140,7 +140,9 @@ IOBluetoothDevice * findDevice(const char * address) {
 
     IOBluetoothDevice *device = [IOBluetoothDevice deviceWithAddressString:toNSString(id)];
 
-    if (!device) { iobtErr(EXIT_FAILURE, "Device not found by address: %s", address); }
+    if (strict && ![device isPaired] && ![device isFavorite]) {
+        iobtErr(EXIT_FAILURE, "Device not found by address: %s", address);
+    }
 
     return device;
 }

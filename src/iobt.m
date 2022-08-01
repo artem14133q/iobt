@@ -52,8 +52,8 @@ __unused IOBT_DEVICES search(int8_t timeout) {
     return deviceArray;
 }
 
-__unused IOBT_DEVICE getDevice(const char * address) {
-    IOBluetoothDevice *iOBTDevice = findDevice(address);
+__unused IOBT_DEVICE getDevice(const char * address, bool strict) {
+    IOBluetoothDevice *iOBTDevice = findDevice(address, strict);
 
     IOBT_DEVICE device;
 
@@ -63,7 +63,7 @@ __unused IOBT_DEVICE getDevice(const char * address) {
 }
 
 __unused bool closeConnection(const char * address) {
-    IOBluetoothDevice *device = findDevice(address);
+    IOBluetoothDevice *device = findDevice(address, true);
 
     [device closeConnection];
 
@@ -96,13 +96,13 @@ __unused bool closeConnection(const char * address) {
 }
 
 __unused bool openConnection(const char * address) {
-    IOBluetoothDevice *device = findDevice(address);
+    IOBluetoothDevice *device = findDevice(address, false);
 
     return [device openConnection] == kIOReturnSuccess;
 }
 
 __unused int pair(const char * address, const char * pin) {
-    IOBluetoothDevice *device = findDevice(address);
+    IOBluetoothDevice *device = findDevice(address, false);
 
     @autoreleasepool {
         DevicePairDelegate *delegate = [[[DevicePairDelegate alloc] init] autorelease];
@@ -127,7 +127,7 @@ __unused int pair(const char * address, const char * pin) {
 }
 
 __unused bool unpair(const char * address) {
-    IOBluetoothDevice *device = findDevice(address);
+    IOBluetoothDevice *device = findDevice(address, true);
 
     if ([device respondsToSelector:@selector(remove)]) {
         [device performSelector:@selector(remove)];

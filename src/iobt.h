@@ -10,40 +10,41 @@
 #define IOBT_EXPORT __exported __unused
 
 /**
- * Start scan device time (timeout). If timeout < 1 when timeout = 10 sec.
+ * Start scan device in range (seconds). If timeout < 1 when timeout = 10 sec.
  * @param timout
  * @return
  */
 IOBT_EXPORT IOBT_DEVICES search(int8_t timout);
 
 /**
- * Return DeviceArray struct with paired devices.
+ * Return array with paired devices.
  * @return
  */
 IOBT_EXPORT IOBT_DEVICES paired();
 
 /**
- * Return DeviceArray struct with connected devices. If devices not fround len = 0.
+ * Return array with connected devices.
  * @return
  */
 IOBT_EXPORT IOBT_DEVICES connected();
 
 /**
- * Find Device by address. If device not found create error and exit with error code 1.
+ * Find device by address. If device not found, return fake device with current address.
+ * If strict flag is true it exit with error when device not paired and not favorite.
  * @param address
  * @return
  */
-IOBT_EXPORT IOBT_DEVICE getDevice(const char * address);
+IOBT_EXPORT IOBT_DEVICE getDevice(const char * address, bool strict);
 
 /**
- * Close connection. If device not connected return false. If device not found return false.
+ * Close connection. If device not disconnected return false.
  * @param address
  * @return
  */
 IOBT_EXPORT bool closeConnection(const char * address);
 
 /**
- * Close connection. If device is connected return true. If device not found return false.
+ * Open connection. If device not connected, return false. If device not found it try to connect with current address.
  * @param address
  * @return
  */
@@ -58,14 +59,14 @@ IOBT_EXPORT bool openConnection(const char * address);
 IOBT_EXPORT int pair(const char * address, const char * pin);
 
 /**
- * Unpair devices. If device not paired raise error. If device could not unpair return false.
+ * Unpair devices. If device could not unpair, return false.
  * @param address
  * @return
  */
 IOBT_EXPORT bool unpair(const char * address);
 
 /**
- * Return Bluetooth adapter power state;
+ * Return Bluetooth adapter power state.
  * @return
  */
 IOBT_EXPORT bool power();
