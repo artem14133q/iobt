@@ -101,8 +101,7 @@ bool setPower(bool enable);
 > cd iobt
 > mkdir build
 > cd build
-> cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" ..
-> cmake --build . --target all -- -j 1
+> cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" .. --build . --target all -- -j 1
 ```
 
 `bin` directory will be generated in root project dir 
