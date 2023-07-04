@@ -1,5 +1,4 @@
 # iobt
-
 [![CMake](https://github.com/artem14133q/iobt/actions/workflows/cmake.yml/badge.svg)](https://github.com/artem14133q/iobt/actions/workflows/cmake.yml)
 
 Library for manage bluetooth in MacOS system
