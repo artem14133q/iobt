@@ -97,11 +97,11 @@ bool setPower(bool enable);
 #### Make
 
 ```zsh
-> git clone git@github.com:artem14133q/iobt.git
-> cd iobt
-> mkdir build
-> cd build
-> cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" .. --build . --target all -- -j 1
+git clone git@github.com:artem14133q/iobt.git
+cd iobt
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" .. --build . --target all -- -j 1
 ```
 
 `bin` directory will be generated in root project dir 
